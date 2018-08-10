@@ -1,0 +1,18 @@
+float I=0;
+float pre_err=0;
+float D=0;
+float err_value;
+static int Uk;
+#define Kp  2//
+#define Ki  2//
+#define Kd  2//
+u8 PID(float setValue,float feedbackValue)
+{
+	
+	err_value=setValue-feedbackValue;
+	I=err_value+I;
+	D=err_value-pre_err;
+	pre_err=err_value;
+	Uk=err_value*Kp +I*Ki+D*Kd ;
+	return Uk;
+}
